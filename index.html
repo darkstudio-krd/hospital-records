@@ -12,10 +12,14 @@
       background-color: #030203;
       color: #d1c7bd;
       font-family: 'Courier New', Courier, monospace;
+      font-weight: bold; /* Bold text globally */
       padding: 20px;
       margin: 0;
       position: relative;
       overflow-x: hidden;
+      text-rendering: optimizeLegibility; /* Eliminates pixelated edges */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     /* Ambient Blood CRT Scanline Effect */
@@ -52,6 +56,7 @@
       margin-bottom: 20px;
       text-transform: uppercase;
       text-shadow: 0 0 8px #8b0000;
+      font-weight: bold;
     }
     .lang-btn-grid {
       display: grid;
@@ -84,7 +89,8 @@
       border-bottom: 1px solid #5a0000;
       padding-bottom: 10px;
       margin-bottom: 15px;
-      font-size: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: bold;
     }
     .control-btn {
       background: #1a0505;
@@ -93,7 +99,7 @@
       padding: 4px 8px;
       cursor: pointer;
       font-family: inherit;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: bold;
     }
 
@@ -108,9 +114,10 @@
       margin: 0;
       letter-spacing: 2px;
       text-shadow: 0 0 10px #5a0000;
+      font-weight: bold;
     }
     .header p {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: #a37c7c;
       margin: 5px 0 0 0;
       font-weight: bold;
@@ -121,7 +128,7 @@
       border: 1px solid #ff0000;
       color: #ff3333;
       padding: 12px;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: bold;
       text-align: center;
       margin-bottom: 20px;
@@ -148,13 +155,14 @@
       background-color: #1a0202;
     }
     .patient-card h2 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: #ff4d4d;
       margin: 0 0 10px 0;
       letter-spacing: 1px;
+      font-weight: bold;
     }
     .field {
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       margin-bottom: 6px;
       font-weight: bold;
     }
@@ -169,14 +177,14 @@
       margin-top: 10px;
       padding-top: 10px;
       border-top: 1px dashed #5a0000;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       color: #e6c3c3;
       line-height: 1.6;
       font-weight: bold;
     }
     .footer {
       text-align: center;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       color: #774444;
       margin-top: 30px;
       border-top: 1px solid #330000;
