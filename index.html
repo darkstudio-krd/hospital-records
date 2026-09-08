@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RIVERSIDE GENERAL HOSPITAL - EMERGENCY TRIAGE LOG</title>
+  <title>BLACK SITE 04 - CLASSIFIED SUBJECT LOG</title>
   <style>
     * {
       box-sizing: border-box;
@@ -45,7 +45,7 @@
       padding: 20px;
     }
     #lang-modal h2 {
-      color: #66fcf1;
+      color: #ff4d4d;
       font-size: 1.2rem;
       letter-spacing: 2px;
       margin-bottom: 20px;
@@ -60,8 +60,8 @@
     }
     .lang-btn {
       background: #1f2833;
-      border: 1px solid #66fcf1;
-      color: #66fcf1;
+      border: 1px solid #ff4d4d;
+      color: #ff4d4d;
       padding: 12px;
       font-family: inherit;
       font-weight: bold;
@@ -69,9 +69,9 @@
       transition: all 0.2s ease;
     }
     .lang-btn:hover {
-      background: #66fcf1;
+      background: #ff4d4d;
       color: #050608;
-      box-shadow: 0 0 10px #66fcf1;
+      box-shadow: 0 0 10px #ff4d4d;
     }
 
     /* Top Bar Controls */
@@ -86,8 +86,8 @@
     }
     .control-btn {
       background: #1f2833;
-      border: 1px solid #45a29e;
-      color: #45a29e;
+      border: 1px solid #ff4d4d;
+      color: #ff4d4d;
       padding: 4px 8px;
       cursor: pointer;
       font-family: inherit;
@@ -95,12 +95,12 @@
     }
 
     .header {
-      border-bottom: 2px solid #66fcf1;
+      border-bottom: 2px solid #ff4d4d;
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
     .header h1 {
-      color: #66fcf1;
+      color: #ff4d4d;
       font-size: 1.3rem;
       margin: 0;
       letter-spacing: 1px;
@@ -155,6 +155,12 @@
     .alert .field span {
       color: #ff4d4d;
     }
+    .redacted {
+      background: #333;
+      color: #333;
+      user-select: none;
+      padding: 0 4px;
+    }
     .notes {
       margin-top: 10px;
       padding-top: 8px;
@@ -190,7 +196,7 @@
 
   <!-- Language Selection Popup -->
   <div id="lang-modal">
-    <h2>SELECT SYSTEM LANGUAGE</h2>
+    <h2>AUTHENTICATION REQUIRED — SELECT LANGUAGE</h2>
     <div class="lang-btn-grid">
       <button class="lang-btn" onclick="setLanguage('en')">ENGLISH</button>
       <button class="lang-btn" onclick="setLanguage('ku')">کوردی</button>
@@ -201,7 +207,7 @@
   </div>
 
   <div class="top-bar">
-    <span id="sys-status">SYSTEM STATUS: ONLINE</span>
+    <span id="sys-status">FACILITY NETWORK: CLASSIFIED // LEVEL 4</span>
     <div>
       <button class="control-btn" onclick="toggleAudio()">🔊 AUDIO</button>
       <button class="control-btn" onclick="document.getElementById('lang-modal').style.display='flex'">🌐 LANG</button>
@@ -209,160 +215,160 @@
   </div>
 
   <div class="header">
-    <h1 id="title">RIVERSIDE GENERAL HOSPITAL</h1>
-    <p id="subtitle">DEPARTMENT OF EMERGENCY MEDICINE — PATIENT INTAKE SYSTEM</p>
-    <p id="access-info">DATE: OCTOBER 15, 2021 | ACCESS LEVEL: RESTRICTED (CBI CLEARANCE ONLY)</p>
+    <h1 id="title">RIVERSIDE RESEARCH FACILITY (BLACK SITE 04)</h1>
+    <p id="subtitle">CBI EXPERIMENTAL MEDICAL DIVISION — CONTAINMENT LOG</p>
+    <p id="access-info">DATE: OCTOBER 15, 2021 | CLEARANCE LEVEL: EYES ONLY (CBI DIRECTIVE)</p>
   </div>
 
   <div class="warning-banner" id="warning">
-    ⚠️ NOTICE: WING B UNDER QUARANTINE PROTOCOL. DO NOT ENTER WITHOUT AUTHORIZATION.
+    ⚠️ CRITICAL ALERT: FACILITY CONTAINMENT BREACH IN SECTOR B. LETHAL FORCE AUTHORIZED.
   </div>
 
-  <!-- PATIENT 1: ETHAN -->
-  <div class="patient-card" id="card-ethan">
-    <h2 id="p1-title">PATIENT #0491 — ETHAN [OFFICER]</h2>
-    <div class="field"><span id="p1-status-lbl">Status:</span> <span id="p1-status-val">SURGICAL / CRITICAL</span></div>
-    <div class="field"><span id="p1-loc-lbl">Location:</span> <span id="p1-loc-val">WING A — ROOM 102</span></div>
+  <!-- SUBJECT 1: CHLOE -->
+  <div class="patient-card" id="card-chloe">
+    <h2 id="p1-title">SUBJECT #0491 — CHLOE</h2>
+    <div class="field"><span id="p1-status-lbl">Status:</span> <span id="p1-status-val">SEDATED / UNDER OBSERVATION</span></div>
+    <div class="field"><span id="p1-loc-lbl">Location:</span> <span id="p1-loc-val">SECTOR A — HOLDING CELL 102</span></div>
     <div class="notes" id="p1-notes">
-      <strong>Intake Notes:</strong> Recovered from Riverside Forest crash site. Multiple fractures, blunt force chest trauma, severe blood loss. Patient regained consciousness briefly at 03:14 AM reporting "voices in the fog." Transferred to intensive care. CBI agents placed a hold on all visitor access.
+      <strong>Containment Notes:</strong> Retrieved from forest perimeter crash site. Recovered under covert protocols to prevent public discovery. Subject sustained blunt force trauma and high shock. Repeatedly mutters about "shadows on the road." Access restricted to CBI senior personnel.
     </div>
   </div>
 
-  <!-- PATIENT 2: DANIEL -->
+  <!-- SUBJECT 2: DANIEL -->
   <div class="patient-card alert" id="card-daniel">
-    <h2 id="p2-title">PATIENT #0492 — DANIEL</h2>
-    <div class="field"><span id="p2-status-lbl">Status:</span> <span id="p2-status-val">SUBJECT CONTAINMENT FAILED</span></div>
-    <div class="field"><span id="p2-loc-lbl">Location:</span> <span id="p2-loc-val">WING B — ROOM 104 (ISOLATION)</span></div>
+    <h2 id="p2-title">SUBJECT #0492 — DANIEL</h2>
+    <div class="field"><span id="p2-status-lbl">Status:</span> <span id="p2-status-val">CONTAINMENT FAILURE // HOSTILE</span></div>
+    <div class="field"><span id="p2-loc-lbl">Location:</span> <span id="p2-loc-val">SECTOR B — ISOLATION CHAMBER 104</span></div>
     <div class="notes" id="p2-notes">
-      <strong>Intake Notes:</strong> Brought in by secondary unit following forest search. No initial external trauma visible, but patient exhibited rapid muscular spasms and skin lesions.<br><br>
-      <strong>04:30 AM Update:</strong> Unprecedented physiological deterioration. Rapid spinal elongation, extreme muscular atrophy, complete loss of human vocal capability. Patient broke through isolation restraints. Medical staff evacuated Wing B. DO NOT APPROACH.
+      <strong>Containment Notes:</strong> Transported following forest isolation sweep. Subject displayed rapid exposure symptoms, skin ulcerations, and violent muscular spasms.<br><br>
+      <strong>04:30 AM Update:</strong> Full biological corruption confirmed. Severe spinal elongation, skeletal distortion, and total loss of cognitive speech. Subject breached steel restraint harness and escaped into the lower ventilation grid. DO NOT ATTEMPT INDIVIDUAL RECAPTURE.
     </div>
   </div>
 
-  <!-- PATIENT 3: JENA -->
+  <!-- SUBJECT 3: JENA -->
   <div class="patient-card" id="card-jena">
-    <h2 id="p3-title">PATIENT #0493 — JENA</h2>
-    <div class="field"><span id="p3-status-lbl">Status:</span> <span id="p3-status-val">DECEASED / AUTOPSY HOLD</span></div>
-    <div class="field"><span id="p3-loc-lbl">Location:</span> <span id="p3-loc-val">LOWER LEVEL — MORGUE BAY 3</span></div>
+    <h2 id="p3-title">SUBJECT #0493 — JENA</h2>
+    <div class="field"><span id="p3-status-lbl">Status:</span> <span id="p3-status-val">TERMINATED / BIO-SAMPLE SECURED</span></div>
+    <div class="field"><span id="p3-loc-lbl">Location:</span> <span id="p3-loc-val">SUB-LEVEL 3 — COLD STORAGE BAY 08</span></div>
     <div class="notes" id="p3-notes">
-      <strong>Intake Notes:</strong> Confirmed deceased at crash scene. Pronounced upon arrival at 02:45 AM. Personal effects secured in Locker 08. Autopsy pending CBI forensic review. Cause of death noted as acute neuro-trauma inconsistent with vehicle impact.
+      <strong>Containment Notes:</strong> Deceased upon extraction from vehicle wreckage. Body transferred directly to secret facility cold storage to bypass civilian coroner. Tissue samples harvested for biological threat analysis under CBI Project <span class="redacted">UNSEEN</span>.
     </div>
   </div>
 
   <div class="footer" id="footer-text">
-    INTERNAL USE ONLY • PROPERTY OF RIVERSIDE GENERAL HOSPITAL & CBI INVESTIGATIVE DIVISION
+    CLASSIFIED DOCUMENT • UNAUTHORIZED ACCESS WILL RESULT IN IMMEDIATE TERMINATION • PROPERTY OF CBI BLACK SITE 04
   </div>
 
   <script>
     const translations = {
       en: {
-        title: "RIVERSIDE GENERAL HOSPITAL",
-        subtitle: "DEPARTMENT OF EMERGENCY MEDICINE — PATIENT INTAKE SYSTEM",
-        accessInfo: "DATE: OCTOBER 15, 2021 | ACCESS LEVEL: RESTRICTED (CBI CLEARANCE ONLY)",
-        warning: "⚠️ NOTICE: WING B UNDER QUARANTINE PROTOCOL. DO NOT ENTER WITHOUT AUTHORIZATION.",
+        title: "RIVERSIDE RESEARCH FACILITY (BLACK SITE 04)",
+        subtitle: "CBI EXPERIMENTAL MEDICAL DIVISION — CONTAINMENT LOG",
+        accessInfo: "DATE: OCTOBER 15, 2021 | CLEARANCE LEVEL: EYES ONLY (CBI DIRECTIVE)",
+        warning: "⚠️ CRITICAL ALERT: FACILITY CONTAINMENT BREACH IN SECTOR B. LETHAL FORCE AUTHORIZED.",
         statusLbl: "Status:",
         locLbl: "Location:",
-        p1Title: "PATIENT #0491 — ETHAN [OFFICER]",
-        p1Status: "SURGICAL / CRITICAL",
-        p1Loc: "WING A — ROOM 102",
-        p1Notes: "<strong>Intake Notes:</strong> Recovered from Riverside Forest crash site. Multiple fractures, blunt force chest trauma, severe blood loss. Patient regained consciousness briefly at 03:14 AM reporting 'voices in the fog.' Transferred to intensive care. CBI agents placed a hold on all visitor access.",
-        p2Title: "PATIENT #0492 — DANIEL",
-        p2Status: "SUBJECT CONTAINMENT FAILED",
-        p2Loc: "WING B — ROOM 104 (ISOLATION)",
-        p2Notes: "<strong>Intake Notes:</strong> Brought in by secondary unit following forest search. No initial external trauma visible, but patient exhibited rapid muscular spasms and skin lesions.<br><br><strong>04:30 AM Update:</strong> Unprecedented physiological deterioration. Rapid spinal elongation, extreme muscular atrophy, complete loss of human vocal capability. Patient broke through isolation restraints. Medical staff evacuated Wing B. DO NOT APPROACH.",
-        p3Title: "PATIENT #0493 — JENA",
-        p3Status: "DECEASED / AUTOPSY HOLD",
-        p3Loc: "LOWER LEVEL — MORGUE BAY 3",
-        p3Notes: "<strong>Intake Notes:</strong> Confirmed deceased at crash scene. Pronounced upon arrival at 02:45 AM. Personal effects secured in Locker 08. Autopsy pending CBI forensic review. Cause of death noted as acute neuro-trauma inconsistent with vehicle impact.",
-        footer: "INTERNAL USE ONLY • PROPERTY OF RIVERSIDE GENERAL HOSPITAL & CBI INVESTIGATIVE DIVISION",
+        p1Title: "SUBJECT #0491 — CHLOE",
+        p1Status: "SEDATED / UNDER OBSERVATION",
+        p1Loc: "SECTOR A — HOLDING CELL 102",
+        p1Notes: "<strong>Containment Notes:</strong> Retrieved from forest perimeter crash site. Recovered under covert protocols to prevent public discovery. Subject sustained blunt force trauma and high shock. Repeatedly mutters about 'shadows on the road.' Access restricted to CBI senior personnel.",
+        p2Title: "SUBJECT #0492 — DANIEL",
+        p2Status: "CONTAINMENT FAILURE // HOSTILE",
+        p2Loc: "SECTOR B — ISOLATION CHAMBER 104",
+        p2Notes: "<strong>Containment Notes:</strong> Transported following forest isolation sweep. Subject displayed rapid exposure symptoms, skin ulcerations, and violent muscular spasms.<br><br><strong>04:30 AM Update:</strong> Full biological corruption confirmed. Severe spinal elongation, skeletal distortion, and total loss of cognitive speech. Subject breached steel restraint harness and escaped into the lower ventilation grid. DO NOT ATTEMPT INDIVIDUAL RECAPTURE.",
+        p3Title: "SUBJECT #0493 — JENA",
+        p3Status: "TERMINATED / BIO-SAMPLE SECURED",
+        p3Loc: "SUB-LEVEL 3 — COLD STORAGE BAY 08",
+        p3Notes: "<strong>Containment Notes:</strong> Deceased upon extraction from vehicle wreckage. Body transferred directly to secret facility cold storage to bypass civilian coroner. Tissue samples harvested for biological threat analysis under CBI Project <span class='redacted'>UNSEEN</span>.",
+        footer: "CLASSIFIED DOCUMENT • UNAUTHORIZED ACCESS WILL RESULT IN IMMEDIATE TERMINATION • PROPERTY OF CBI BLACK SITE 04",
         rtl: false
       },
       ku: {
-        title: "نەخۆشخانەی گشتی ڕیڤەرساید",
-        subtitle: "بەشی پزیشکی بەپەلە — سیستەمی تۆمارکردنی نەخۆش",
-        accessInfo: "بەروار: ١٥ی تشرینی یەکەمی ٢٠٢١ | ئاستی ڕێگەپێدان: سنووردارکراوە (تەنها CBI)",
-        warning: "⚠️ ئاگاداری: باڵی B لەژێر پرۆتۆکۆلی کەرەنتینەدایە. بەبێ ڕێگەپێدان مەچۆ ژوورەوە.",
+        title: "دەزگای توێژینەوەی ڕیڤەرساید (سایتی ڕەشی ٠٤)",
+        subtitle: "بەشی پزیشکی ئەزموونی CBI — تۆماری دەستبەسەرکردن",
+        accessInfo: "بەروار: ١٥ی تشرینی یەکەمی ٢٠٢١ | ئاستی ڕێگەپێدان: نهێنی بەرز (ڕێنمایی CBI)",
+        warning: "⚠️ ئاگاداری مەترسیدار: شکانژنی کەرەنتینە لە کەرتی B. ڕێگە بە هێزی کوشندە دراوە.",
         statusLbl: "دۆخ:",
         locLbl: "شوێن:",
-        p1Title: "نەخۆش #0491 — ئیثن [ئەفسەر]",
-        p1Status: "نەشتەرگەری / مەترسیدار",
-        p1Loc: "باڵی A — ژووری 102",
-        p1Notes: "<strong>تێبینی تۆمارکردن:</strong> لە شوێنی ڕووداوەکەی دارستانی ڕیڤەرساید ڕزگارکراوە. شکان و برینی سەخت. لە کاتژمێر ٠٣:١٤ی بەیانی هۆشی هاتۆتەوە و باسی 'دەنگ لەناو تەم' کردووە. گوێزراوەتەوە بۆ چاودێری چڕ.",
-        p2Title: "نەخۆش #0492 — دانیال",
-        p2Status: "کۆنتڕۆڵکردنی بابەتیی شکستی هێنا",
-        p2Loc: "باڵی B — ژووری 104 (کەرەنتینە)",
-        p2Notes: "<strong>تێبینی تۆمارکردن:</strong> دوای گەڕان لە دارستانەکە هێنراوەتەوە. هیچ برینێکی دەرەکی نەبووە، بەڵام گرژبوونی ماسولکە و برینی پێستی هەبووە.<br><br><strong>نوێکردنەوەی ٠٤:٣٠ی بەیانی:</strong> تێکچوونی جەستەیی بێوێنە. درێژبوونەوەی بڕبڕەی پشت و لەدەستدانی دەنگی مرۆڤ. نەخۆشەکە بەندەکانی شکاندووە و ڕایکردووە. نزیک مەکەوەرەوە.",
-        p3Title: "نەخۆش #0493 — جێنا",
-        p3Status: "کۆچی دوایی کردووە / ڕاگیرانی توێکاری",
-        p3Loc: "نەهۆمی خوارەوە — تەرمخانەی ۳",
-        p3Notes: "<strong>تێبینی تۆمارکردن:</strong> لە شوێنی ڕووداوەکە گیانی لەدەستداوە. کەلوپەلە کەسییەکانی لە کانتۆری ۰۸ دانراون. توێکاری جەستەی ڕاگیراوە بۆ لێکۆڵینەوەی CBI.",
-        footer: "تەنها بۆ بەکارهێنانی ناوخۆیی • موڵکی نەخۆشخانەی گشتی ڕیڤەرساید و داوودەزگای CBI",
+        p1Title: "کەسی ئامانج #0491 — کلۆی",
+        p1Status: "هۆشپێکراو / لەژێر چاودێری",
+        p1Loc: "کەرتی A — ژووری ڕاگرتنی 102",
+        p1Notes: "<strong>تێبینی ڕاگرتن:</strong> لە شوێنی ڕووداوەکەی دارستان دەرهێنراوە. بە پرۆتۆکۆلی نهێنی هێنراوەتەوە بۆ ڕێگریکردن لە ئاشکرابوون. تووشی شۆکی سەخت بووە و بەردەوام دەڵێت 'سێبەرەکانی سەر ڕێگاکە'.",
+        p2Title: "کەسی ئامانج #0492 — دانیال",
+        p2Status: "شکستی کەرەنتینە // دوژمنکارانە",
+        p2Loc: "کەرتی B — ژووری گۆشەگیری 104",
+        p2Notes: "<strong>تێبینی ڕاگرتن:</strong> دوای گەڕان لە دارستان هێنراوەتەوە. نیشانەی ڕووشانی پێست و گرژبوونی ماسولکەی هەبووە.<br><br><strong>نوێکردنەوەی ٠٤:٣٠ی بەیانی:</strong> تێکچوونی بایۆلۆجی تەواو پشتڕاستکرایەوە. درێژبوونەوەی بڕبڕەی پشت و لەدەستدانی ئاخاوتن. بەندە پۆڵاییەکانی شکاندووە و ڕایکردووە بۆناو زێرابەکان. بە تەنها نزیک مەکەرەوە.",
+        p3Title: "کەسی ئامانج #0493 — جێنا",
+        p3Status: "گیانی لەدەستداوە / نموونەی بایۆلۆجی وەرگیراوە",
+        p3Loc: "نەهۆمی ژێرەوە 3 — تەرمخانەی 08",
+        p3Notes: "<strong>تێبینی ڕاگرتن:</strong> لە شوێنی ڕووداوەکە گیانی لەدەستداوە. تەرمەکەی گوێزراوەتەوە بۆ بەشی ساردکەرەوەی نهێنی بۆ ڕێگریکردن لە پشکنینی مەدەنی. نموونەی شانەکانی وەرگیراوە بۆ پڕۆژەی <span class='redacted'>UNSEEN</span>.",
+        footer: "بەڵگەنامەی نهێنی • چوونەژوورەوەی ڕێنێنمدراو سزاکەی کوشتنە • موڵکی CBI BLACK SITE 04",
         rtl: true
       },
       ar: {
-        title: "مستشفى ريفرسايد العام",
-        subtitle: "قسم طب الطوارئ — نظام تسجيل المرضى",
-        accessInfo: "التاريخ: 15 أكتوبر 2021 | مستوى الوصول: محظور (تخليص CBI فقط)",
-        warning: "⚠️ تنبيه: الجناح B يخضع لبروتوكول الحجر الصحي. لا تدخل بدون تصريح.",
+        title: "منشأة أبحاث ريفرسايد (الموقع الأسود 04)",
+        subtitle: "قسم الطب التجريبي CBI — سجل الاحتواء",
+        accessInfo: "التاريخ: 15 أكتوبر 2021 | مستوى التصريح: سري للغاية (توجيه CBI)",
+        warning: "⚠️ تحذير حرج: خرق نظام الاحتواء في القطاع B. تم المصادقة على القوة القاتلة.",
         statusLbl: "الحالة:",
         locLbl: "الموقع:",
-        p1Title: "المريض #0491 — إيثان [ضابط]",
-        p1Status: "جراحي / حرج",
-        p1Loc: "الجناح A — الغرفة 102",
-        p1Notes: "<strong>ملاحظات التسجيل:</strong> تم إنقاذه من موقع حادث غابة ريفرسايد. كسور متعددة وإصابات بالغة. استعاد وعيه لفترة وجيزة في الساعة 03:14 صباحًا مبلّغًا عن 'أصوات في الضباب'.",
-        p2Title: "المريض #0492 — دانيال",
-        p2Status: "فشل احتواء المريض",
-        p2Loc: "الجناح B — الغرفة 104 (العزل)",
-        p2Notes: "<strong>ملاحظات التسجيل:</strong> جلبته وحدة ثانوية بعد البحث في الغابة. أظهر تشنجات عضلية وآفات جلدية.<br><br><strong>تحديث 04:30 صباحًا:</strong> تدهور جسدي غير مسبوق. استطالة سريعة في العمود الفقري وفقدان كامل للقدرة على الكلام. المريض اخترق قيود العزل. لا تقترب.",
-        p3Title: "المريض #0493 — جينا",
-        p3Status: "متوفية / حظر التشريح",
-        p3Loc: "الطابق السفلي — مشرحة 3",
-        p3Notes: "<strong>ملاحظات التسجيل:</strong> تأكدت وفاتها في موقع الحادث. الممتلكات الشخصية محفوظة في الخزانة 08. التشريح معلق لانتظار مراجعة CBI.",
-        footer: "للاستخدام الداخلي فقط • ملك لمستشفى ريفرسايد العام وقطاع التحقيقات CBI",
+        p1Title: "العينة #0491 — كلوي",
+        p1Status: "مهدأة / تحت الملاحظة",
+        p1Loc: "القطاع A — زنزانة الاحتجاز 102",
+        p1Notes: "<strong>ملاحظات الاحتواء:</strong> تم استردادها من موقع الحادث بسريّة تامة لمنع الكشف العام. تعاني من صدمة شديدة وتردد 'ظلال على الطريق'. Access restricted to senior agents.",
+        p2Title: "العينة #0492 — دانيال",
+        p2Status: "فشل الاحتواء // عدائي",
+        p2Loc: "القطاع B — غرفة العزل 104",
+        p2Notes: "<strong>ملاحظات الاحتواء:</strong> أظهر أعراض التآكل الجلدي والتشنجات.<br><br><strong>تحديث 04:30 صباحًا:</strong> فساد بيولوجي كامل. استطالة سريعة في الهيكل العظمي وفقدان القدرة على الكلام. اخترق القيود الفولاذية وهرب إلى شبكة التهوية. لا تحاول الإمساك به بمفردك.",
+        p3Title: "العينة #0493 — جينا",
+        p3Status: "متوفية / تم أخذ عينات بيولوجية",
+        p3Loc: "المستوى السفلي 3 — التبريد 08",
+        p3Notes: "<strong>ملاحظات الاحتواء:</strong> نقلت مباشرة إلى التبريد السري لتجنب الطب الشرعي المدني. تم أخذ عينات من الأنسجة لمشروع <span class='redacted'>UNSEEN</span>.",
+        footer: "وثيقة سرية • الدخول غير المصرح به يؤدي إلى التصفية الفورية • ملكية CBI BLACK SITE 04",
         rtl: true
       },
       de: {
-        title: "RIVERSIDE GENERAL HOSPITAL",
-        subtitle: "NOTFALLMEDIZIN — PATIENTENAUFNAHMESYSTEM",
-        accessInfo: "DATUM: 15. OKTOBER 2021 | ZUGRIFF: BESCHRÄNKT (NUR CBI-FREIGABE)",
-        warning: "⚠️ HINWEIS: TRAKT B UNTER QUARANTÄNE-PROTOKOLL. BETRETEN VERBOTEN.",
+        title: "RIVERSIDE FORSCHUNGSANLAGE (BLACK SITE 04)",
+        subtitle: "CBI EXPERIMENTELLE MEDIZIN — EINDÄMMUNGSPROTOKOLL",
+        accessInfo: "DATUM: 15. OKTOBER 2021 | FREIGABE: GEHEIM (CBI DIREKTIVE)",
+        warning: "⚠️ KRITISCHER ALARM: EINDÄMMUNGSBRUCH IN SEKTOR B. TÖDLICHE GEWALT AUTORISIERT.",
         statusLbl: "Status:",
         locLbl: "Standort:",
-        p1Title: "PATIENT #0491 — ETHAN [OFFIZIER]",
-        p1Status: "CHIRURGISCH / KRITISCH",
-        p1Loc: "TRAKT A — RAUM 102",
-        p1Notes: "<strong>Aufnahmenotiz:</strong> Vom Unfallort im Riverside-Wald geborgen. Schweres Trauma und Blutverlust. Patient erlangte um 03:14 Uhr kurz das Bewusstsein und berichtete von 'Stimmen im Nebel'.",
-        p2Title: "PATIENT #0492 — DANIEL",
-        p2Status: "EINDÄMMUNG FEHLGESCHLAGEN",
-        p2Loc: "TRAKT B — RAUM 104 (ISOLATION)",
-        p2Notes: "<strong>Aufnahmenotiz:</strong> Schnelle Muskelkrämpfe und Läsionen.<br><br><strong>04:30 Uhr Update:</strong> Unvorhergesehene Mutation. Wirbelsäulenverlängerung und Muskelatrophie. Patient hat Isolationsfesseln durchbrochen. NICHT NÄHERN.",
-        p3Title: "PATIENT #0493 — JENA",
-        p3Status: "VERSTORBEN / OBDUKTION STOPP",
-        p3Loc: "UNTERGESCHOSS — PATHOLOGIE 3",
-        p3Notes: "<strong>Aufnahmenotiz:</strong> Am Unfallort für tot erklärt. Obduktion steht unter CBI-Vorbehalt.",
-        footer: "NUR FÜR INTERNEN GEBRAUCH • EIGENTUM DES RIVERSIDE HOSPITALS & CBI",
+        p1Title: "SUBJEKT #0491 — CHLOE",
+        p1Status: "RUHIGGESTELLT / UNTER BEOBACHTUNG",
+        p1Loc: "SEKTOR A — ZELLE 102",
+        p1Notes: "<strong>Eindämmungsnotiz:</strong> Unter verdeckten Protokollen geborgen. Schockzustand. Murmelt ständig von 'Schatten auf der Straße'. Zugriff nur für Senior-Agenten.",
+        p2Title: "SUBJEKT #0492 — DANIEL",
+        p2Status: "EINDÄMMUNGSFEHLER // FEINDLICH",
+        p2Loc: "SEKTOR B — ISOLATIONSKAMMER 104",
+        p2Notes: "<strong>Eindämmungsnotiz:</strong> Schnelle Gewebeveränderungen.<br><br><strong>04:30 Uhr Update:</strong> Biologische Korruption bestätigt. Skelettverlängerung und Sprachverlust. Subjekt hat Stahlfesseln durchbrochen und ist im Lüftungssystem entkommen. NICHT EINZELN NÄHERN.",
+        p3Title: "SUBJEKT #0493 — JENA",
+        p3Status: "ELIMINIERT / BIO-PROBE GESICHERT",
+        p3Loc: "UNTERGESCHOSS 3 — KÜHLRAUM 08",
+        p3Notes: "<strong>Eindämmungsnotiz:</strong> Direkt in den Geheimbereich überführt. Gewebeproben für CBI-Projekt <span class='redacted'>UNSEEN</span> entnommen.",
+        footer: "GEHEIMDOKUMENT • UNBEFUGTER ZUGRIFF FÜHRT ZUR SOFORTIGEN ELIMINIERUNG",
         rtl: false
       },
       ja: {
-        title: "リバーサイド総合病院",
-        subtitle: "救急部門 — 患者受付システム",
-        accessInfo: "日付: 2021年10月15日 | アクセスレベル: 制限あり (CBI専用)",
-        warning: "⚠️ 警告: B病棟は隔離プロトコル下です。許可なく立ち入らないでください。",
+        title: "リバーサイド研究施設 (ブラックサイト04)",
+        subtitle: "CBI実験医学部門 — 収容記録",
+        accessInfo: "日付: 2021年10月15日 | 機密レベル: 極秘 (CBI指令)",
+        warning: "⚠️ 緊急警報: セクターBで収容違反が発生。致死性の武力行使が許可されました。",
         statusLbl: "ステータス:",
         locLbl: "場所:",
-        p1Title: "患者 #0491 — イーサン [警官]",
-        p1Status: "手術中 / 重体",
-        p1Loc: "A病棟 — 102号室",
-        p1Notes: "<strong>受付記録:</strong> リバーサイドの森の事故現場から救出。重度の外傷と大量出血。午前3:14に一時的に意識を取り戻し「霧の中の声」を報告。",
-        p2Title: "患者 #0492 — ダニエル",
-        p2Status: "収容失敗 / 逃走",
-        p2Loc: "B病棟 — 104号室 (隔離室)",
-        p2Notes: "<strong>受付記録:</strong> 急速な筋肉の痙攣と皮膚病変を発症。<br><br><strong>午前4:30更新:</strong> 前例のない身体的変容。脊椎の急激な 伸長と人間言語機能の喪失。拘束を破り逃走。近寄るな。",
-        p3Title: "患者 #0493 — ジェナ",
-        p3Status: "死亡 / 司法解剖凍結",
-        p3Loc: "地下 — 遺体安置所 3",
-        p3Notes: "<strong>受付記録:</strong> 現場で死亡確認。遺品はロッカー08に保管。解剖はCBIの審査待ち。",
-        footer: "内部使用限定 • リバーサイド総合病院およびCBI調査部門の所有物",
+        p1Title: "検体 #0491 — クロエ",
+        p1Status: "鎮静状態 / 監視下",
+        p1Loc: "セクターA — 保持セル 102",
+        p1Notes: "<strong>収容記録:</strong> 事故現場から極秘裏に回収。大きなショック状態。「道路の影」についてつぶやき続けている。",
+        p2Title: "検体 #0492 — ダニエル",
+        p2Status: "収容失敗 // 敵対的",
+        p2Loc: "セクターB — 隔離室 104",
+        p2Notes: "<strong>収容記録:</strong> 急速な皮膚潰瘍と痙攣を発生。<br><br><strong>午前4:30更新:</strong> 生物学的変容を確認。骨格の急激な伸長と言語機能の喪失。鋼鉄の拘束を破り通気孔へ逃走。単独での捕獲を禁ず。",
+        p3Title: "検体 #0493 — ジェナ",
+        p3Status: "死亡 / バイオサンプル確保",
+        p3Loc: "地下3階 — 冷凍保管室 08",
+        p3Notes: "<strong>収容記録:</strong> 遺体は極秘保管庫へ直接移送。CBIプロジェクト<span class='redacted'>UNSEEN</span>の組織サンプルを採取済。",
+        footer: "機密文書 • 許可のないアクセスは即座に排除対象となります • CBI BLACK SITE 04",
         rtl: false
       }
     };
@@ -390,19 +396,19 @@
       document.getElementById('p3-status-lbl').innerText = data.statusLbl;
       document.getElementById('p3-loc-lbl').innerText = data.locLbl;
 
-      // Patient 1
+      // Subject 1 (Chloe)
       document.getElementById('p1-title').innerText = data.p1Title;
       document.getElementById('p1-status-val').innerText = data.p1Status;
       document.getElementById('p1-loc-val').innerText = data.p1Loc;
       document.getElementById('p1-notes').innerHTML = data.p1Notes;
 
-      // Patient 2
+      // Subject 2 (Daniel - Model 1)
       document.getElementById('p2-title').innerText = data.p2Title;
       document.getElementById('p2-status-val').innerText = data.p2Status;
       document.getElementById('p2-loc-val').innerText = data.p2Loc;
       document.getElementById('p2-notes').innerHTML = data.p2Notes;
 
-      // Patient 3
+      // Subject 3 (Jena)
       document.getElementById('p3-title').innerText = data.p3Title;
       document.getElementById('p3-status-val').innerText = data.p3Status;
       document.getElementById('p3-loc-val').innerText = data.p3Loc;
@@ -411,7 +417,7 @@
       document.getElementById('footer-text').innerText = data.footer;
     }
 
-    // Simple Synth Humming Audio Generator using Web Audio API
+    // Audio generator
     let audioCtx = null;
     let oscillator = null;
 
@@ -422,7 +428,7 @@
         const gain = audioCtx.createGain();
 
         oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(55, audioCtx.currentTime); // Low creepy hum (55Hz)
+        oscillator.frequency.setValueAtTime(55, audioCtx.currentTime); 
         gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
 
         oscillator.connect(gain);
