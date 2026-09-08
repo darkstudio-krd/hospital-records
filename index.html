@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIVERSIDE GENERAL HOSPITAL - EMERGENCY TRIAGE LOG</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #050608;
+      color: #c5c6c7;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 20px;
+      margin: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient CRT Scanline Effect */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Language Selection Modal */
+    #lang-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(5, 6, 8, 0.95);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+    #lang-modal h2 {
+      color: #66fcf1;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .lang-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      max-width: 500px;
+      width: 100%;
+    }
+    .lang-btn {
+      background: #1f2833;
+      border: 1px solid #66fcf1;
+      color: #66fcf1;
+      padding: 12px;
+      font-family: inherit;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover {
+      background: #66fcf1;
+      color: #050608;
+      box-shadow: 0 0 10px #66fcf1;
+    }
+
+    /* Top Bar Controls */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      font-size: 0.75rem;
+    }
+    .control-btn {
+      background: #1f2833;
+      border: 1px solid #45a29e;
+      color: #45a29e;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.7rem;
+    }
+
+    .header {
+      border-bottom: 2px solid #66fcf1;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .header h1 {
+      color: #66fcf1;
+      font-size: 1.3rem;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+    .header p {
+      font-size: 0.75rem;
+      color: #888;
+      margin: 5px 0 0 0;
+    }
+
+    .warning-banner {
+      background-color: #380808;
+      border: 1px solid #ff4d4d;
+      color: #ff4d4d;
+      padding: 12px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.4); }
+      70% { box-shadow: 0 0 0 8px rgba(255, 77, 77, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+    }
+
+    .patient-card {
+      background-color: #121821;
+      border-left: 4px solid #66fcf1;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .patient-card.alert {
+      border-left-color: #ff4d4d;
+      background-color: #1a0f12;
+    }
+    .patient-card h2 {
+      font-size: 1rem;
+      color: #fff;
+      margin: 0 0 10px 0;
+    }
+    .field {
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+    }
+    .field span {
+      color: #66fcf1;
+      font-weight: bold;
+    }
+    .alert .field span {
+      color: #ff4d4d;
+    }
+    .notes {
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #333;
+      font-size: 0.78rem;
+      color: #ddd;
+      line-height: 1.5;
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.65rem;
+      color: #555;
+      margin-top: 30px;
+      border-top: 1px solid #222;
+      padding-top: 15px;
+    }
+
+    /* RTL Support for Kurdish & Arabic */
+    .rtl {
+      direction: rtl;
+      text-align: right;
+    }
+    .rtl .patient-card {
+      border-left: none;
+      border-right: 4px solid #66fcf1;
+    }
+    .rtl .patient-card.alert {
+      border-right-color: #ff4d4d;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Language Selection Popup -->
+  <div id="lang-modal">
+    <h2>SELECT SYSTEM LANGUAGE</h2>
+    <div class="lang-btn-grid">
+      <button class="lang-btn" onclick="setLanguage('en')">ENGLISH</button>
+      <button class="lang-btn" onclick="setLanguage('ku')">کوردی</button>
+      <button class="lang-btn" onclick="setLanguage('ar')">العربية</button>
+      <button class="lang-btn" onclick="setLanguage('de')">DEUTSCH</button>
+      <button class="lang-btn" onclick="setLanguage('ja')">日本語</button>
+    </div>
+  </div>
+
+  <div class="top-bar">
+    <span id="sys-status">SYSTEM STATUS: ONLINE</span>
+    <div>
+      <button class="control-btn" onclick="toggleAudio()">🔊 AUDIO</button>
+      <button class="control-btn" onclick="document.getElementById('lang-modal').style.display='flex'">🌐 LANG</button>
+    </div>
+  </div>
+
+  <div class="header">
+    <h1 id="title">RIVERSIDE GENERAL HOSPITAL</h1>
+    <p id="subtitle">DEPARTMENT OF EMERGENCY MEDICINE — PATIENT INTAKE SYSTEM</p>
+    <p id="access-info">DATE: OCTOBER 15, 2021 | ACCESS LEVEL: RESTRICTED (CBI CLEARANCE ONLY)</p>
+  </div>
+
+  <div class="warning-banner" id="warning">
+    ⚠️ NOTICE: WING B UNDER QUARANTINE PROTOCOL. DO NOT ENTER WITHOUT AUTHORIZATION.
+  </div>
+
+  <!-- PATIENT 1: ETHAN -->
+  <div class="patient-card" id="card-ethan">
+    <h2 id="p1-title">PATIENT #0491 — ETHAN [OFFICER]</h2>
+    <div class="field"><span id="p1-status-lbl">Status:</span> <span id="p1-status-val">SURGICAL / CRITICAL</span></div>
+    <div class="field"><span id="p1-loc-lbl">Location:</span> <span id="p1-loc-val">WING A — ROOM 102</span></div>
+    <div class="notes" id="p1-notes">
+      <strong>Intake Notes:</strong> Recovered from Riverside Forest crash site. Multiple fractures, blunt force chest trauma, severe blood loss. Patient regained consciousness briefly at 03:14 AM reporting "voices in the fog." Transferred to intensive care. CBI agents placed a hold on all visitor access.
+    </div>
+  </div>
+
+  <!-- PATIENT 2: DANIEL -->
+  <div class="patient-card alert" id="card-daniel">
+    <h2 id="p2-title">PATIENT #0492 — DANIEL</h2>
+    <div class="field"><span id="p2-status-lbl">Status:</span> <span id="p2-status-val">SUBJECT CONTAINMENT FAILED</span></div>
+    <div class="field"><span id="p2-loc-lbl">Location:</span> <span id="p2-loc-val">WING B — ROOM 104 (ISOLATION)</span></div>
+    <div class="notes" id="p2-notes">
+      <strong>Intake Notes:</strong> Brought in by secondary unit following forest search. No initial external trauma visible, but patient exhibited rapid muscular spasms and skin lesions.<br><br>
+      <strong>04:30 AM Update:</strong> Unprecedented physiological deterioration. Rapid spinal elongation, extreme muscular atrophy, complete loss of human vocal capability. Patient broke through isolation restraints. Medical staff evacuated Wing B. DO NOT APPROACH.
+    </div>
+  </div>
+
+  <!-- PATIENT 3: JENA -->
+  <div class="patient-card" id="card-jena">
+    <h2 id="p3-title">PATIENT #0493 — JENA</h2>
+    <div class="field"><span id="p3-status-lbl">Status:</span> <span id="p3-status-val">DECEASED / AUTOPSY HOLD</span></div>
+    <div class="field"><span id="p3-loc-lbl">Location:</span> <span id="p3-loc-val">LOWER LEVEL — MORGUE BAY 3</span></div>
+    <div class="notes" id="p3-notes">
+      <strong>Intake Notes:</strong> Confirmed deceased at crash scene. Pronounced upon arrival at 02:45 AM. Personal effects secured in Locker 08. Autopsy pending CBI forensic review. Cause of death noted as acute neuro-trauma inconsistent with vehicle impact.
+    </div>
+  </div>
+
+  <div class="footer" id="footer-text">
+    INTERNAL USE ONLY • PROPERTY OF RIVERSIDE GENERAL HOSPITAL & CBI INVESTIGATIVE DIVISION
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        title: "RIVERSIDE GENERAL HOSPITAL",
+        subtitle: "DEPARTMENT OF EMERGENCY MEDICINE — PATIENT INTAKE SYSTEM",
+        accessInfo: "DATE: OCTOBER 15, 2021 | ACCESS LEVEL: RESTRICTED (CBI CLEARANCE ONLY)",
+        warning: "⚠️ NOTICE: WING B UNDER QUARANTINE PROTOCOL. DO NOT ENTER WITHOUT AUTHORIZATION.",
+        statusLbl: "Status:",
+        locLbl: "Location:",
+        p1Title: "PATIENT #0491 — ETHAN [OFFICER]",
+        p1Status: "SURGICAL / CRITICAL",
+        p1Loc: "WING A — ROOM 102",
+        p1Notes: "<strong>Intake Notes:</strong> Recovered from Riverside Forest crash site. Multiple fractures, blunt force chest trauma, severe blood loss. Patient regained consciousness briefly at 03:14 AM reporting 'voices in the fog.' Transferred to intensive care. CBI agents placed a hold on all visitor access.",
+        p2Title: "PATIENT #0492 — DANIEL",
+        p2Status: "SUBJECT CONTAINMENT FAILED",
+        p2Loc: "WING B — ROOM 104 (ISOLATION)",
+        p2Notes: "<strong>Intake Notes:</strong> Brought in by secondary unit following forest search. No initial external trauma visible, but patient exhibited rapid muscular spasms and skin lesions.<br><br><strong>04:30 AM Update:</strong> Unprecedented physiological deterioration. Rapid spinal elongation, extreme muscular atrophy, complete loss of human vocal capability. Patient broke through isolation restraints. Medical staff evacuated Wing B. DO NOT APPROACH.",
+        p3Title: "PATIENT #0493 — JENA",
+        p3Status: "DECEASED / AUTOPSY HOLD",
+        p3Loc: "LOWER LEVEL — MORGUE BAY 3",
+        p3Notes: "<strong>Intake Notes:</strong> Confirmed deceased at crash scene. Pronounced upon arrival at 02:45 AM. Personal effects secured in Locker 08. Autopsy pending CBI forensic review. Cause of death noted as acute neuro-trauma inconsistent with vehicle impact.",
+        footer: "INTERNAL USE ONLY • PROPERTY OF RIVERSIDE GENERAL HOSPITAL & CBI INVESTIGATIVE DIVISION",
+        rtl: false
+      },
+      ku: {
+        title: "نەخۆشخانەی گشتی ڕیڤەرساید",
+        subtitle: "بەشی پزیشکی بەپەلە — سیستەمی تۆمارکردنی نەخۆش",
+        accessInfo: "بەروار: ١٥ی تشرینی یەکەمی ٢٠٢١ | ئاستی ڕێگەپێدان: سنووردارکراوە (تەنها CBI)",
+        warning: "⚠️ ئاگاداری: باڵی B لەژێر پرۆتۆکۆلی کەرەنتینەدایە. بەبێ ڕێگەپێدان مەچۆ ژوورەوە.",
+        statusLbl: "دۆخ:",
+        locLbl: "شوێن:",
+        p1Title: "نەخۆش #0491 — ئیثن [ئەفسەر]",
+        p1Status: "نەشتەرگەری / مەترسیدار",
+        p1Loc: "باڵی A — ژووری 102",
+        p1Notes: "<strong>تێبینی تۆمارکردن:</strong> لە شوێنی ڕووداوەکەی دارستانی ڕیڤەرساید ڕزگارکراوە. شکان و برینی سەخت. لە کاتژمێر ٠٣:١٤ی بەیانی هۆشی هاتۆتەوە و باسی 'دەنگ لەناو تەم' کردووە. گوێزراوەتەوە بۆ چاودێری چڕ.",
+        p2Title: "نەخۆش #0492 — دانیال",
+        p2Status: "کۆنتڕۆڵکردنی بابەتیی شکستی هێنا",
+        p2Loc: "باڵی B — ژووری 104 (کەرەنتینە)",
+        p2Notes: "<strong>تێبینی تۆمارکردن:</strong> دوای گەڕان لە دارستانەکە هێنراوەتەوە. هیچ برینێکی دەرەکی نەبووە، بەڵام گرژبوونی ماسولکە و برینی پێستی هەبووە.<br><br><strong>نوێکردنەوەی ٠٤:٣٠ی بەیانی:</strong> تێکچوونی جەستەیی بێوێنە. درێژبوونەوەی بڕبڕەی پشت و لەدەستدانی دەنگی مرۆڤ. نەخۆشەکە بەندەکانی شکاندووە و ڕایکردووە. نزیک مەکەوەرەوە.",
+        p3Title: "نەخۆش #0493 — جێنا",
+        p3Status: "کۆچی دوایی کردووە / ڕاگیرانی توێکاری",
+        p3Loc: "نەهۆمی خوارەوە — تەرمخانەی ۳",
+        p3Notes: "<strong>تێبینی تۆمارکردن:</strong> لە شوێنی ڕووداوەکە گیانی لەدەستداوە. کەلوپەلە کەسییەکانی لە کانتۆری ۰۸ دانراون. توێکاری جەستەی ڕاگیراوە بۆ لێکۆڵینەوەی CBI.",
+        footer: "تەنها بۆ بەکارهێنانی ناوخۆیی • موڵکی نەخۆشخانەی گشتی ڕیڤەرساید و داوودەزگای CBI",
+        rtl: true
+      },
+      ar: {
+        title: "مستشفى ريفرسايد العام",
+        subtitle: "قسم طب الطوارئ — نظام تسجيل المرضى",
+        accessInfo: "التاريخ: 15 أكتوبر 2021 | مستوى الوصول: محظور (تخليص CBI فقط)",
+        warning: "⚠️ تنبيه: الجناح B يخضع لبروتوكول الحجر الصحي. لا تدخل بدون تصريح.",
+        statusLbl: "الحالة:",
+        locLbl: "الموقع:",
+        p1Title: "المريض #0491 — إيثان [ضابط]",
+        p1Status: "جراحي / حرج",
+        p1Loc: "الجناح A — الغرفة 102",
+        p1Notes: "<strong>ملاحظات التسجيل:</strong> تم إنقاذه من موقع حادث غابة ريفرسايد. كسور متعددة وإصابات بالغة. استعاد وعيه لفترة وجيزة في الساعة 03:14 صباحًا مبلّغًا عن 'أصوات في الضباب'.",
+        p2Title: "المريض #0492 — دانيال",
+        p2Status: "فشل احتواء المريض",
+        p2Loc: "الجناح B — الغرفة 104 (العزل)",
+        p2Notes: "<strong>ملاحظات التسجيل:</strong> جلبته وحدة ثانوية بعد البحث في الغابة. أظهر تشنجات عضلية وآفات جلدية.<br><br><strong>تحديث 04:30 صباحًا:</strong> تدهور جسدي غير مسبوق. استطالة سريعة في العمود الفقري وفقدان كامل للقدرة على الكلام. المريض اخترق قيود العزل. لا تقترب.",
+        p3Title: "المريض #0493 — جينا",
+        p3Status: "متوفية / حظر التشريح",
+        p3Loc: "الطابق السفلي — مشرحة 3",
+        p3Notes: "<strong>ملاحظات التسجيل:</strong> تأكدت وفاتها في موقع الحادث. الممتلكات الشخصية محفوظة في الخزانة 08. التشريح معلق لانتظار مراجعة CBI.",
+        footer: "للاستخدام الداخلي فقط • ملك لمستشفى ريفرسايد العام وقطاع التحقيقات CBI",
+        rtl: true
+      },
+      de: {
+        title: "RIVERSIDE GENERAL HOSPITAL",
+        subtitle: "NOTFALLMEDIZIN — PATIENTENAUFNAHMESYSTEM",
+        accessInfo: "DATUM: 15. OKTOBER 2021 | ZUGRIFF: BESCHRÄNKT (NUR CBI-FREIGABE)",
+        warning: "⚠️ HINWEIS: TRAKT B UNTER QUARANTÄNE-PROTOKOLL. BETRETEN VERBOTEN.",
+        statusLbl: "Status:",
+        locLbl: "Standort:",
+        p1Title: "PATIENT #0491 — ETHAN [OFFIZIER]",
+        p1Status: "CHIRURGISCH / KRITISCH",
+        p1Loc: "TRAKT A — RAUM 102",
+        p1Notes: "<strong>Aufnahmenotiz:</strong> Vom Unfallort im Riverside-Wald geborgen. Schweres Trauma und Blutverlust. Patient erlangte um 03:14 Uhr kurz das Bewusstsein und berichtete von 'Stimmen im Nebel'.",
+        p2Title: "PATIENT #0492 — DANIEL",
+        p2Status: "EINDÄMMUNG FEHLGESCHLAGEN",
+        p2Loc: "TRAKT B — RAUM 104 (ISOLATION)",
+        p2Notes: "<strong>Aufnahmenotiz:</strong> Schnelle Muskelkrämpfe und Läsionen.<br><br><strong>04:30 Uhr Update:</strong> Unvorhergesehene Mutation. Wirbelsäulenverlängerung und Muskelatrophie. Patient hat Isolationsfesseln durchbrochen. NICHT NÄHERN.",
+        p3Title: "PATIENT #0493 — JENA",
+        p3Status: "VERSTORBEN / OBDUKTION STOPP",
+        p3Loc: "UNTERGESCHOSS — PATHOLOGIE 3",
+        p3Notes: "<strong>Aufnahmenotiz:</strong> Am Unfallort für tot erklärt. Obduktion steht unter CBI-Vorbehalt.",
+        footer: "NUR FÜR INTERNEN GEBRAUCH • EIGENTUM DES RIVERSIDE HOSPITALS & CBI",
+        rtl: false
+      },
+      ja: {
+        title: "リバーサイド総合病院",
+        subtitle: "救急部門 — 患者受付システム",
+        accessInfo: "日付: 2021年10月15日 | アクセスレベル: 制限あり (CBI専用)",
+        warning: "⚠️ 警告: B病棟は隔離プロトコル下です。許可なく立ち入らないでください。",
+        statusLbl: "ステータス:",
+        locLbl: "場所:",
+        p1Title: "患者 #0491 — イーサン [警官]",
+        p1Status: "手術中 / 重体",
+        p1Loc: "A病棟 — 102号室",
+        p1Notes: "<strong>受付記録:</strong> リバーサイドの森の事故現場から救出。重度の外傷と大量出血。午前3:14に一時的に意識を取り戻し「霧の中の声」を報告。",
+        p2Title: "患者 #0492 — ダニエル",
+        p2Status: "収容失敗 / 逃走",
+        p2Loc: "B病棟 — 104号室 (隔離室)",
+        p2Notes: "<strong>受付記録:</strong> 急速な筋肉の痙攣と皮膚病変を発症。<br><br><strong>午前4:30更新:</strong> 前例のない身体的変容。脊椎の急激な 伸長と人間言語機能の喪失。拘束を破り逃走。近寄るな。",
+        p3Title: "患者 #0493 — ジェナ",
+        p3Status: "死亡 / 司法解剖凍結",
+        p3Loc: "地下 — 遺体安置所 3",
+        p3Notes: "<strong>受付記録:</strong> 現場で死亡確認。遺品はロッカー08に保管。解剖はCBIの審査待ち。",
+        footer: "内部使用限定 • リバーサイド総合病院およびCBI調査部門の所有物",
+        rtl: false
+      }
+    };
+
+    function setLanguage(lang) {
+      const data = translations[lang];
+      document.getElementById('lang-modal').style.display = 'none';
+
+      if (data.rtl) {
+        document.body.classList.add('rtl');
+      } else {
+        document.body.classList.remove('rtl');
+      }
+
+      document.getElementById('title').innerText = data.title;
+      document.getElementById('subtitle').innerText = data.subtitle;
+      document.getElementById('access-info').innerText = data.accessInfo;
+      document.getElementById('warning').innerText = data.warning;
+
+      // Labels
+      document.getElementById('p1-status-lbl').innerText = data.statusLbl;
+      document.getElementById('p1-loc-lbl').innerText = data.locLbl;
+      document.getElementById('p2-status-lbl').innerText = data.statusLbl;
+      document.getElementById('p2-loc-lbl').innerText = data.locLbl;
+      document.getElementById('p3-status-lbl').innerText = data.statusLbl;
+      document.getElementById('p3-loc-lbl').innerText = data.locLbl;
+
+      // Patient 1
+      document.getElementById('p1-title').innerText = data.p1Title;
+      document.getElementById('p1-status-val').innerText = data.p1Status;
+      document.getElementById('p1-loc-val').innerText = data.p1Loc;
+      document.getElementById('p1-notes').innerHTML = data.p1Notes;
+
+      // Patient 2
+      document.getElementById('p2-title').innerText = data.p2Title;
+      document.getElementById('p2-status-val').innerText = data.p2Status;
+      document.getElementById('p2-loc-val').innerText = data.p2Loc;
+      document.getElementById('p2-notes').innerHTML = data.p2Notes;
+
+      // Patient 3
+      document.getElementById('p3-title').innerText = data.p3Title;
+      document.getElementById('p3-status-val').innerText = data.p3Status;
+      document.getElementById('p3-loc-val').innerText = data.p3Loc;
+      document.getElementById('p3-notes').innerHTML = data.p3Notes;
+
+      document.getElementById('footer-text').innerText = data.footer;
+    }
+
+    // Simple Synth Humming Audio Generator using Web Audio API
+    let audioCtx = null;
+    let oscillator = null;
+
+    function toggleAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        oscillator = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(55, audioCtx.currentTime); // Low creepy hum (55Hz)
+        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+
+        oscillator.connect(gain);
+        gain.connect(audioCtx.destination);
+        oscillator.start();
+      } else {
+        if (audioCtx.state === 'running') {
+          audioCtx.suspend();
+        } else if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
