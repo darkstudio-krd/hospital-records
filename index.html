@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BLACK SITE 04 - CLASSIFIED SUBJECT LOG</title>
+  <title>SACRED ORDER OF THE UNSEEN - BLOOD VESSEL INTAKE</title>
   <style>
     * {
       box-sizing: border-box;
     }
     body {
-      background-color: #050608;
-      color: #c5c6c7;
+      background-color: #030203;
+      color: #d1c7bd;
       font-family: 'Courier New', Courier, monospace;
       padding: 20px;
       margin: 0;
@@ -18,24 +18,24 @@
       overflow-x: hidden;
     }
 
-    /* Ambient CRT Scanline Effect */
+    /* Ambient Blood CRT Scanline Effect */
     body::before {
       content: " ";
       display: block;
       position: fixed;
       top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background: linear-gradient(rgba(20, 0, 0, 0) 50%, rgba(50, 0, 0, 0.4) 50%);
       background-size: 100% 4px;
       z-index: 100;
       pointer-events: none;
-      opacity: 0.6;
+      opacity: 0.8;
     }
 
     /* Language Selection Modal */
     #lang-modal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(5, 6, 8, 0.95);
+      background: rgba(3, 2, 3, 0.98);
       z-index: 200;
       display: flex;
       flex-direction: column;
@@ -43,13 +43,15 @@
       align-items: center;
       text-align: center;
       padding: 20px;
+      border: 2px solid #8b0000;
     }
     #lang-modal h2 {
-      color: #ff4d4d;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
+      color: #ff0000;
+      font-size: 1.3rem;
+      letter-spacing: 3px;
       margin-bottom: 20px;
       text-transform: uppercase;
+      text-shadow: 0 0 8px #8b0000;
     }
     .lang-btn-grid {
       display: grid;
@@ -59,8 +61,8 @@
       width: 100%;
     }
     .lang-btn {
-      background: #1f2833;
-      border: 1px solid #ff4d4d;
+      background: #120303;
+      border: 1px solid #8b0000;
       color: #ff4d4d;
       padding: 12px;
       font-family: inherit;
@@ -69,9 +71,9 @@
       transition: all 0.2s ease;
     }
     .lang-btn:hover {
-      background: #ff4d4d;
-      color: #050608;
-      box-shadow: 0 0 10px #ff4d4d;
+      background: #8b0000;
+      color: #ffffff;
+      box-shadow: 0 0 15px #ff0000;
     }
 
     /* Top Bar Controls */
@@ -79,103 +81,107 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid #5a0000;
       padding-bottom: 10px;
       margin-bottom: 15px;
       font-size: 0.75rem;
     }
     .control-btn {
-      background: #1f2833;
-      border: 1px solid #ff4d4d;
+      background: #1a0505;
+      border: 1px solid #8b0000;
       color: #ff4d4d;
       padding: 4px 8px;
       cursor: pointer;
       font-family: inherit;
       font-size: 0.7rem;
+      font-weight: bold;
     }
 
     .header {
-      border-bottom: 2px solid #ff4d4d;
+      border-bottom: 2px solid #8b0000;
       padding-bottom: 10px;
       margin-bottom: 20px;
     }
     .header h1 {
-      color: #ff4d4d;
-      font-size: 1.3rem;
+      color: #ff0000;
+      font-size: 1.4rem;
       margin: 0;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 10px #5a0000;
     }
     .header p {
       font-size: 0.75rem;
-      color: #888;
+      color: #a37c7c;
       margin: 5px 0 0 0;
+      font-weight: bold;
     }
 
     .warning-banner {
-      background-color: #380808;
-      border: 1px solid #ff4d4d;
-      color: #ff4d4d;
+      background-color: #2a0000;
+      border: 1px solid #ff0000;
+      color: #ff3333;
       padding: 12px;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       font-weight: bold;
       text-align: center;
       margin-bottom: 20px;
-      animation: pulse 2s infinite;
+      animation: pulse 1.5s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.4); }
-      70% { box-shadow: 0 0 0 8px rgba(255, 77, 77, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+      0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
     }
 
     .patient-card {
-      background-color: #121821;
-      border-left: 4px solid #66fcf1;
+      background-color: #0d0404;
+      border-left: 4px solid #8b0000;
       padding: 15px;
       margin-bottom: 15px;
+      border-top: 1px solid #220505;
+      border-right: 1px solid #220505;
+      border-bottom: 1px solid #220505;
     }
     .patient-card.alert {
-      border-left-color: #ff4d4d;
-      background-color: #1a0f12;
+      border-left-color: #ff0000;
+      background-color: #1a0202;
     }
     .patient-card h2 {
-      font-size: 1rem;
-      color: #fff;
+      font-size: 1.05rem;
+      color: #ff4d4d;
       margin: 0 0 10px 0;
+      letter-spacing: 1px;
     }
     .field {
-      font-size: 0.8rem;
-      margin-bottom: 5px;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      font-weight: bold;
     }
     .field span {
-      color: #66fcf1;
+      color: #ff0000;
       font-weight: bold;
     }
     .alert .field span {
-      color: #ff4d4d;
-    }
-    .redacted {
-      background: #333;
-      color: #333;
-      user-select: none;
-      padding: 0 4px;
+      color: #ff3333;
     }
     .notes {
       margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px dashed #333;
-      font-size: 0.78rem;
-      color: #ddd;
-      line-height: 1.5;
+      padding-top: 10px;
+      border-top: 1px dashed #5a0000;
+      font-size: 0.82rem;
+      color: #e6c3c3;
+      line-height: 1.6;
+      font-weight: bold;
     }
     .footer {
       text-align: center;
-      font-size: 0.65rem;
-      color: #555;
+      font-size: 0.7rem;
+      color: #774444;
       margin-top: 30px;
-      border-top: 1px solid #222;
+      border-top: 1px solid #330000;
       padding-top: 15px;
+      font-weight: bold;
     }
 
     /* RTL Support for Kurdish & Arabic */
@@ -185,10 +191,10 @@
     }
     .rtl .patient-card {
       border-left: none;
-      border-right: 4px solid #66fcf1;
+      border-right: 4px solid #8b0000;
     }
     .rtl .patient-card.alert {
-      border-right-color: #ff4d4d;
+      border-right-color: #ff0000;
     }
   </style>
 </head>
@@ -196,7 +202,7 @@
 
   <!-- Language Selection Popup -->
   <div id="lang-modal">
-    <h2>AUTHENTICATION REQUIRED — SELECT LANGUAGE</h2>
+    <h2>SACRED SANCTUM - SELECT ACCESS LANGUAGE</h2>
     <div class="lang-btn-grid">
       <button class="lang-btn" onclick="setLanguage('en')">ENGLISH</button>
       <button class="lang-btn" onclick="setLanguage('ku')">کوردی</button>
@@ -207,168 +213,168 @@
   </div>
 
   <div class="top-bar">
-    <span id="sys-status">FACILITY NETWORK: CLASSIFIED // LEVEL 4</span>
+    <span id="sys-status">SACRED NETWORK: CULT SANCTUM // SACRIFICIAL ARCHIVE</span>
     <div>
-      <button class="control-btn" onclick="toggleAudio()">🔊 AUDIO</button>
+      <button class="control-btn" onclick="toggleAudio()">🔊 CHANT HUM</button>
       <button class="control-btn" onclick="document.getElementById('lang-modal').style.display='flex'">🌐 LANG</button>
     </div>
   </div>
 
   <div class="header">
-    <h1 id="title">RIVERSIDE RESEARCH FACILITY (BLACK SITE 04)</h1>
-    <p id="subtitle">CBI EXPERIMENTAL MEDICAL DIVISION — CONTAINMENT LOG</p>
-    <p id="access-info">DATE: OCTOBER 15, 2021 | CLEARANCE LEVEL: EYES ONLY (CBI DIRECTIVE)</p>
+    <h1 id="title">RIVERSIDE CULT SANCTUM & HUMAN SLAUGHTERHOUSE</h1>
+    <p id="subtitle">BLOOD OFFERING LOG & DEMONIC MUTATION REGISTRY</p>
+    <p id="access-info">DATE: OCTOBER 15, 2021 | CLEARANCE: HIGH PRIEST & DISSECTORS ONLY</p>
   </div>
 
   <div class="warning-banner" id="warning">
-    ⚠️ CRITICAL ALERT: FACILITY CONTAINMENT BREACH IN SECTOR B. LETHAL FORCE AUTHORIZED.
+    ⚠️ DEMONIC BREACH ALERT: SACRIFICE #0492 MUTATED PRIOR TO FINAL RITUAL BLEEDING. SECURE SACRIFICIAL CHAMBERS IMMEDIATELY.
   </div>
 
-  <!-- SUBJECT 1: CHLOE -->
+  <!-- VESSEL 1: CHLOE -->
   <div class="patient-card" id="card-chloe">
-    <h2 id="p1-title">SUBJECT #0491 — CHLOE</h2>
-    <div class="field"><span id="p1-status-lbl">Status:</span> <span id="p1-status-val">SEDATED / UNDER OBSERVATION</span></div>
-    <div class="field"><span id="p1-loc-lbl">Location:</span> <span id="p1-loc-val">SECTOR A — HOLDING CELL 102</span></div>
+    <h2 id="p1-title">VESSEL #0491 — CHLOE</h2>
+    <div class="field"><span id="p1-status-lbl">Status:</span> <span id="p1-status-val">CRITICAL RITUAL INJURY / BOUND IN ALTAR ROOM 1</span></div>
+    <div class="field"><span id="p1-loc-lbl">Location:</span> <span id="p1-loc-val">ALTAR WING A — SACRIFICIAL CELL 102</span></div>
     <div class="notes" id="p1-notes">
-      <strong>Containment Notes:</strong> Retrieved from forest perimeter crash site. Recovered under covert protocols to prevent public discovery. Subject sustained blunt force trauma and high shock. Repeatedly mutters about "shadows on the road." Access restricted to CBI senior personnel.
+      <strong>Abduction & Ritual Injury Notes:</strong> <b>Kidnapped from Riverside road following orchestrated vehicular crash. Abductee sustained catastrophic physical injuries during ritual preparation, including severe arterial lacerations, complete fracture of both legs, and deep occult glyphs carved straight into her thoracic flesh while fully conscious. Bleeding heavily on the stone altar. Kept alive through dark herbal stimulants for midnight blood harvest.</b>
     </div>
   </div>
 
-  <!-- SUBJECT 2: DANIEL -->
+  <!-- VESSEL 2: DANIEL -->
   <div class="patient-card alert" id="card-daniel">
-    <h2 id="p2-title">SUBJECT #0492 — DANIEL</h2>
-    <div class="field"><span id="p2-status-lbl">Status:</span> <span id="p2-status-val">CONTAINMENT FAILURE // HOSTILE</span></div>
-    <div class="field"><span id="p2-loc-lbl">Location:</span> <span id="p2-loc-val">SECTOR B — ISOLATION CHAMBER 104</span></div>
+    <h2 id="p2-title">VESSEL #0492 — DANIEL</h2>
+    <div class="field"><span id="p2-status-lbl">Status:</span> <span id="p2-status-val">DEMONIC MUTATION COMPLETE // HOSTILE ENTITY</span></div>
+    <div class="field"><span id="p2-loc-lbl">Location:</span> <span id="p2-loc-val">SECTOR B — RITUAL ISOLATION PIT 104</span></div>
     <div class="notes" id="p2-notes">
-      <strong>Containment Notes:</strong> Transported following forest isolation sweep. Subject displayed rapid exposure symptoms, skin ulcerations, and violent muscular spasms.<br><br>
-      <strong>04:30 AM Update:</strong> Full biological corruption confirmed. Severe spinal elongation, skeletal distortion, and total loss of cognitive speech. Subject breached steel restraint harness and escaped into the lower ventilation grid. DO NOT ATTEMPT INDIVIDUAL RECAPTURE.
+      <strong>Abduction & Mutation Notes:</strong> <b>Captured in Riverside Forest and chained to the central sacrificial pillar. Subject underwent extreme physical mutilation during demon invocation rituals. Spine torn open, ribs forcibly shattered outward, and skin completely flayed.</b><br><br>
+      <b>04:30 AM Ritual Update: Infernal entity inhabited the mutilated flesh. Subject underwent massive physical expansion, fracturing bone structure further and snapping iron chains. Entity slaughtered two cult priests and crawled into the facility's lower tunnels. RITUAL CONTAINMENT BROKEN.</b>
     </div>
   </div>
 
-  <!-- SUBJECT 3: JENA -->
+  <!-- VESSEL 3: JENA -->
   <div class="patient-card" id="card-jena">
-    <h2 id="p3-title">SUBJECT #0493 — JENA</h2>
-    <div class="field"><span id="p3-status-lbl">Status:</span> <span id="p3-status-val">TERMINATED / BIO-SAMPLE SECURED</span></div>
-    <div class="field"><span id="p3-loc-lbl">Location:</span> <span id="p3-loc-val">SUB-LEVEL 3 — COLD STORAGE BAY 08</span></div>
+    <h2 id="p3-title">VESSEL #0493 — JENA</h2>
+    <div class="field"><span id="p3-status-lbl">Status:</span> <span id="p3-status-val">SLAUGHTERED / FULLY BLED OUT</span></div>
+    <div class="field"><span id="p3-loc-lbl">Location:</span> <span id="p3-loc-val">SUB-LEVEL 3 — SACRIFICIAL DRAIN PIT 08</span></div>
     <div class="notes" id="p3-notes">
-      <strong>Containment Notes:</strong> Deceased upon extraction from vehicle wreckage. Body transferred directly to secret facility cold storage to bypass civilian coroner. Tissue samples harvested for biological threat analysis under CBI Project <span class="redacted">UNSEEN</span>.
+      <strong>Abduction & Slaughter Notes:</strong> <b>Kidnapped from vehicle wreck. Vessel sustained fatal ritual trauma: throat completely severed for blood harvesting, limbs disarticulated at the joints, and organs removed for cult consumption and relic consecration. Remaining bodily carcass hung above the drainage vat for secondary blood collection under Ritual UNSEEN.</b>
     </div>
   </div>
 
   <div class="footer" id="footer-text">
-    CLASSIFIED DOCUMENT • UNAUTHORIZED ACCESS WILL RESULT IN IMMEDIATE TERMINATION • PROPERTY OF CBI BLACK SITE 04
+    HOLY PROPERTY OF THE UNSEEN BROTHERHOOD • UNAUTHORIZED EYE-SIGHT WILL BE PUNISHED WITH EYE-GOUGING AND SACRIFICE
   </div>
 
   <script>
     const translations = {
       en: {
-        title: "RIVERSIDE RESEARCH FACILITY (BLACK SITE 04)",
-        subtitle: "CBI EXPERIMENTAL MEDICAL DIVISION — CONTAINMENT LOG",
-        accessInfo: "DATE: OCTOBER 15, 2021 | CLEARANCE LEVEL: EYES ONLY (CBI DIRECTIVE)",
-        warning: "⚠️ CRITICAL ALERT: FACILITY CONTAINMENT BREACH IN SECTOR B. LETHAL FORCE AUTHORIZED.",
-        statusLbl: "Status:",
-        locLbl: "Location:",
-        p1Title: "SUBJECT #0491 — CHLOE",
-        p1Status: "SEDATED / UNDER OBSERVATION",
-        p1Loc: "SECTOR A — HOLDING CELL 102",
-        p1Notes: "<strong>Containment Notes:</strong> Retrieved from forest perimeter crash site. Recovered under covert protocols to prevent public discovery. Subject sustained blunt force trauma and high shock. Repeatedly mutters about 'shadows on the road.' Access restricted to CBI senior personnel.",
-        p2Title: "SUBJECT #0492 — DANIEL",
-        p2Status: "CONTAINMENT FAILURE // HOSTILE",
-        p2Loc: "SECTOR B — ISOLATION CHAMBER 104",
-        p2Notes: "<strong>Containment Notes:</strong> Transported following forest isolation sweep. Subject displayed rapid exposure symptoms, skin ulcerations, and violent muscular spasms.<br><br><strong>04:30 AM Update:</strong> Full biological corruption confirmed. Severe spinal elongation, skeletal distortion, and total loss of cognitive speech. Subject breached steel restraint harness and escaped into the lower ventilation grid. DO NOT ATTEMPT INDIVIDUAL RECAPTURE.",
-        p3Title: "SUBJECT #0493 — JENA",
-        p3Status: "TERMINATED / BIO-SAMPLE SECURED",
-        p3Loc: "SUB-LEVEL 3 — COLD STORAGE BAY 08",
-        p3Notes: "<strong>Containment Notes:</strong> Deceased upon extraction from vehicle wreckage. Body transferred directly to secret facility cold storage to bypass civilian coroner. Tissue samples harvested for biological threat analysis under CBI Project <span class='redacted'>UNSEEN</span>.",
-        footer: "CLASSIFIED DOCUMENT • UNAUTHORIZED ACCESS WILL RESULT IN IMMEDIATE TERMINATION • PROPERTY OF CBI BLACK SITE 04",
+        title: "RIVERSIDE CULT SANCTUM & HUMAN SLAUGHTERHOUSE",
+        subtitle: "BLOOD OFFERING LOG & DEMONIC MUTATION REGISTRY",
+        accessInfo: "DATE: OCTOBER 15, 2021 | CLEARANCE: HIGH PRIEST & DISSECTORS ONLY",
+        warning: "⚠️ DEMONIC BREACH ALERT: SACRIFICE #0492 MUTATED PRIOR TO FINAL RITUAL BLEEDING. SECURE SACRIFICIAL CHAMBERS IMMEDIATELY.",
+        statusLbl: "Ritual Status:",
+        locLbl: "Chamber Location:",
+        p1Title: "VESSEL #0491 — CHLOE",
+        p1Status: "CRITICAL RITUAL INJURY / BOUND IN ALTAR ROOM 1",
+        p1Loc: "ALTAR WING A — SACRIFICIAL CELL 102",
+        p1Notes: "<strong>Abduction & Ritual Injury Notes:</strong> <b>Kidnapped from Riverside road following orchestrated vehicular crash. Abductee sustained catastrophic physical injuries during ritual preparation, including severe arterial lacerations, complete fracture of both legs, and deep occult glyphs carved straight into her thoracic flesh while fully conscious. Bleeding heavily on the stone altar. Kept alive through dark herbal stimulants for midnight blood harvest.</b>",
+        p2Title: "VESSEL #0492 — DANIEL",
+        p2Status: "DEMONIC MUTATION COMPLETE // HOSTILE ENTITY",
+        p2Loc: "SECTOR B — RITUAL ISOLATION PIT 104",
+        p2Notes: "<strong>Abduction & Mutation Notes:</strong> <b>Captured in Riverside Forest and chained to the central sacrificial pillar. Subject underwent extreme physical mutilation during demon invocation rituals. Spine torn open, ribs forcibly shattered outward, and skin completely flayed.</b><br><br><b>04:30 AM Ritual Update: Infernal entity inhabited the mutilated flesh. Subject underwent massive physical expansion, fracturing bone structure further and snapping iron chains. Entity slaughtered two cult priests and crawled into the facility's lower tunnels. RITUAL CONTAINMENT BROKEN.</b>",
+        p3Title: "VESSEL #0493 — JENA",
+        p3Status: "SLAUGHTERED / FULLY BLED OUT",
+        p3Loc: "SUB-LEVEL 3 — SACRIFICIAL DRAIN PIT 08",
+        p3Notes: "<strong>Abduction & Slaughter Notes:</strong> <b>Kidnapped from vehicle wreck. Vessel sustained fatal ritual trauma: throat completely severed for blood harvesting, limbs disarticulated at the joints, and organs removed for cult consumption and relic consecration. Remaining bodily carcass hung above the drainage vat for secondary blood collection under Ritual UNSEEN.</b>",
+        footer: "HOLY PROPERTY OF THE UNSEEN BROTHERHOOD • UNAUTHORIZED EYE-SIGHT WILL BE PUNISHED WITH EYE-GOUGING AND SACRIFICE",
         rtl: false
       },
       ku: {
-        title: "دەزگای توێژینەوەی ڕیڤەرساید (سایتی ڕەشی ٠٤)",
-        subtitle: "بەشی پزیشکی ئەزموونی CBI — تۆماری دەستبەسەرکردن",
-        accessInfo: "بەروار: ١٥ی تشرینی یەکەمی ٢٠٢١ | ئاستی ڕێگەپێدان: نهێنی بەرز (ڕێنمایی CBI)",
-        warning: "⚠️ ئاگاداری مەترسیدار: شکانژنی کەرەنتینە لە کەرتی B. ڕێگە بە هێزی کوشندە دراوە.",
-        statusLbl: "دۆخ:",
-        locLbl: "شوێن:",
-        p1Title: "کەسی ئامانج #0491 — کلۆی",
-        p1Status: "هۆشپێکراو / لەژێر چاودێری",
-        p1Loc: "کەرتی A — ژووری ڕاگرتنی 102",
-        p1Notes: "<strong>تێبینی ڕاگرتن:</strong> لە شوێنی ڕووداوەکەی دارستان دەرهێنراوە. بە پرۆتۆکۆلی نهێنی هێنراوەتەوە بۆ ڕێگریکردن لە ئاشکرابوون. تووشی شۆکی سەخت بووە و بەردەوام دەڵێت 'سێبەرەکانی سەر ڕێگاکە'.",
-        p2Title: "کەسی ئامانج #0492 — دانیال",
-        p2Status: "شکستی کەرەنتینە // دوژمنکارانە",
-        p2Loc: "کەرتی B — ژووری گۆشەگیری 104",
-        p2Notes: "<strong>تێبینی ڕاگرتن:</strong> دوای گەڕان لە دارستان هێنراوەتەوە. نیشانەی ڕووشانی پێست و گرژبوونی ماسولکەی هەبووە.<br><br><strong>نوێکردنەوەی ٠٤:٣٠ی بەیانی:</strong> تێکچوونی بایۆلۆجی تەواو پشتڕاستکرایەوە. درێژبوونەوەی بڕبڕەی پشت و لەدەستدانی ئاخاوتن. بەندە پۆڵاییەکانی شکاندووە و ڕایکردووە بۆناو زێرابەکان. بە تەنها نزیک مەکەرەوە.",
-        p3Title: "کەسی ئامانج #0493 — جێنا",
-        p3Status: "گیانی لەدەستداوە / نموونەی بایۆلۆجی وەرگیراوە",
-        p3Loc: "نەهۆمی ژێرەوە 3 — تەرمخانەی 08",
-        p3Notes: "<strong>تێبینی ڕاگرتن:</strong> لە شوێنی ڕووداوەکە گیانی لەدەستداوە. تەرمەکەی گوێزراوەتەوە بۆ بەشی ساردکەرەوەی نهێنی بۆ ڕێگریکردن لە پشکنینی مەدەنی. نموونەی شانەکانی وەرگیراوە بۆ پڕۆژەی <span class='redacted'>UNSEEN</span>.",
-        footer: "بەڵگەنامەی نهێنی • چوونەژوورەوەی ڕێنێنمدراو سزاکەی کوشتنە • موڵکی CBI BLACK SITE 04",
+        title: "پەرستگای پەڕستشکارانی ڕیڤەرساید و کوشتارگەی مرۆڤ",
+        subtitle: "تۆماری قوربانی خوێن و گۆڕانی شەیتانی",
+        accessInfo: "بەروار: ١٥ی تشرینی یەکەمی ٢٠٢١ | ئاستی ڕێگەپێدان: تەنها قەشەی گەورە و جەلادەکان",
+        warning: "⚠️ ئاگاداری درندەیی: قوربانی #0492 بەرلە قوربانیکردنی کۆتایی گۆڕا بۆ شەیتان. ژوورەکانی قوربانی دەستبەجێ دابخەن.",
+        statusLbl: "دۆخی ئایننامە:",
+        locLbl: "شوێنی ژوور:",
+        p1Title: "قوربانی #0491 — کلۆی",
+        p1Status: "برینداری سەختی قوربانیکردن / بەستراوەتەوە لە ژووری ۱",
+        p1Loc: "باڵی قوربانیدان A — ژووری 102",
+        p1Notes: "<strong>تێبینی ڕفاندن و بریندارکردن:</strong> <b>لە ڕێگای ڕیڤەرساید ڕفێنرا دوای ڕووداوی هۆکارکراو. قوربانییەکە تووشی برینی جەستەیی زۆر سەخت بووە، لەوانە بڕانی دەمارەکان، شکانینی هەردوو قاچی، و هەڵکۆڵینی سیمبولی شەیتانی لەسەر سنگ و جەستەی کاتێک بە هۆش خۆی بووە. خوێنێکی زۆری لێدەڕۆstr لەسەر بەردی قوربانی. بە دەرمانی تاریک بە زیندویی هێڵدراوەتەوە بۆ بەکارهێنانی خوێنەکەی.</b>",
+        p2Title: "قوربانی #0492 — دانیال",
+        p2Status: "گۆڕانی شەیتانی تەواو بوو // درندەی مەترسیدار",
+        p2Loc: "کەرتی B — چاڵی گۆشەگیری 104",
+        p2Notes: "<strong>تێبینی ڕفاندن و گۆڕان:</strong> <b>لە دارستانی ڕیڤەرساید ڕفێنرا و بە زنجیر بەسترا لە بەردی قوربانی. تووشی شێواندنی زۆر سەختی جەستەیی کرا لە کاتی بانگهێشتکردنی شەیتان. بڕبڕەی پشتی درا، پەڕاسووەکانی شکا و پێستی بە تەواوی داماڵرا.</b><br><br><b>نوێکردنەوەی ٠٤:٣٠ی بەیانی: گیانی شەیتانی چووە ناو جەستە شێواوەکەی. جەستەی بە شێوەیەکی گەورە گەشەی کرد و زنجیرە ئاسنەکانی پچڕاند. دوو قەشەی کوشت و ڕایکرد بۆ زێرابەکانی خوارەوە. کەرەنتینەی ئایننامە شکێنرا.</b>",
+        p3Title: "قوربانی #0493 — جێنا",
+        p3Status: "سەربڕدراو / خوێنی بە تەواوی ڕژێنراوە",
+        p3Loc: "نەهۆمی ژێرەوە 3 — چاڵی کۆکردنەوەی خوێن 08",
+        p3Notes: "<strong>تێبینی ڕفاندن و کوشتن:</strong> <b>لە ناو ئۆتۆمبێلە تێکچووەکە ڕفێنرا. قوربانییەکە تووشی برینی کوشندەی ئاینی کرا: گەرووی بە تەواوی بڕدرا بۆ کۆکردنەوەی خوێن، پەلەکانی لێک جیاکرانەوە، و ئەندامەکانی ناوەوەی دەرهێنران بۆ ڕێوڕەسمی شەیتانی. جەستەکەی هەڵواسراوە بەسەر حەوزی خوێن بۆ پڕۆژەی <span class='redacted'>UNSEEN</span>.</b>",
+        footer: "موڵکی پیرۆزی براکانی UNSEEN • هەر سەیرکردنێکی ڕێنێنمدراو سزاکەی دەرهێنانی چاو و قوربانیکردنە",
         rtl: true
       },
       ar: {
-        title: "منشأة أبحاث ريفرسايد (الموقع الأسود 04)",
-        subtitle: "قسم الطب التجريبي CBI — سجل الاحتواء",
-        accessInfo: "التاريخ: 15 أكتوبر 2021 | مستوى التصريح: سري للغاية (توجيه CBI)",
-        warning: "⚠️ تحذير حرج: خرق نظام الاحتواء في القطاع B. تم المصادقة على القوة القاتلة.",
-        statusLbl: "الحالة:",
-        locLbl: "الموقع:",
-        p1Title: "العينة #0491 — كلوي",
-        p1Status: "مهدأة / تحت الملاحظة",
-        p1Loc: "القطاع A — زنزانة الاحتجاز 102",
-        p1Notes: "<strong>ملاحظات الاحتواء:</strong> تم استردادها من موقع الحادث بسريّة تامة لمنع الكشف العام. تعاني من صدمة شديدة وتردد 'ظلال على الطريق'. Access restricted to senior agents.",
-        p2Title: "العينة #0492 — دانيال",
-        p2Status: "فشل الاحتواء // عدائي",
-        p2Loc: "القطاع B — غرفة العزل 104",
-        p2Notes: "<strong>ملاحظات الاحتواء:</strong> أظهر أعراض التآكل الجلدي والتشنجات.<br><br><strong>تحديث 04:30 صباحًا:</strong> فساد بيولوجي كامل. استطالة سريعة في الهيكل العظمي وفقدان القدرة على الكلام. اخترق القيود الفولاذية وهرب إلى شبكة التهوية. لا تحاول الإمساك به بمفردك.",
-        p3Title: "العينة #0493 — جينا",
-        p3Status: "متوفية / تم أخذ عينات بيولوجية",
-        p3Loc: "المستوى السفلي 3 — التبريد 08",
-        p3Notes: "<strong>ملاحظات الاحتواء:</strong> نقلت مباشرة إلى التبريد السري لتجنب الطب الشرعي المدني. تم أخذ عينات من الأنسجة لمشروع <span class='redacted'>UNSEEN</span>.",
-        footer: "وثيقة سرية • الدخول غير المصرح به يؤدي إلى التصفية الفورية • ملكية CBI BLACK SITE 04",
+        title: "ملاذ طائفة ريفرسايد ومسلخ البشر",
+        subtitle: "سجل تقديم الدماء وطقوس التحول الشيطاني",
+        accessInfo: "التاريخ: 15 أكتوبر 2021 | مستوى التصريح: الكاهن الأعظم والجزارين فقط",
+        warning: "⚠️ تحذير اختراق شيطاني: القربان #0492 تحول قبل الطقس النهائي. أغلقوا غرف الذبح فوراً.",
+        statusLbl: "حالة الطقوس:",
+        locLbl: "موقع الغرفة:",
+        p1Title: "القربان #0491 — كلوي",
+        p1Status: "إصابات طقوسية حرجة / مقيدة في غرفة مذبح 1",
+        p1Loc: "جناح المذبح A — زنزانة 102",
+        p1Notes: "<strong>ملاحظات الاختطاف والإصابة:</strong> <b>تم اختطافها من الطريق بعد حادث مدبر. تعاني من إصابات جسدية كارثية أثناء التحضير للطقوس، بما في ذلك قطع الشرايين، وكسر كامل في كلا الساقين، ونقش رموز شيطانية على صدرها وهي في كامل وعيها. تنزف بغزارة على المذبح الحجري.</b>",
+        p2Title: "القربان #0492 — دانيال",
+        p2Status: "اكتمال التحول الشيطاني // كيان معادي",
+        p2Loc: "القطاع B — حفرة العزل 104",
+        p2Notes: "<strong>ملاحظات الاختطاف والتحول:</strong> <b>تم تمزيق عموده الفقري وتشريح أضلاعه وسلخ جلده بالكامل أثناء طقوس استحضار الشياطين.</b><br><br><b>تحديث 04:30 صباحًا: تلبس الكيان الشيطاني بالجسد الممزق. تضخم الجسد بشك مرعب وحطم السلاسل الحديدية، وقتل كاهنين ثم هرب إلى الأنفاق السفلية. تم كسر احتواء الطقوس.</b>",
+        p3Title: "القربان #0493 — جينا",
+        p3Status: "مذبوحة / تصفية الدماء بالكامل",
+        p3Loc: "المستوى السفلي 3 — حفرة تصريف الدماء 08",
+        p3Notes: "<strong>ملاحظات الاختطاف والذبح:</strong> <b>تم اختطافها من حطام السيارة. تعرضت لقطع كامل في الحلق لجمع الدماء، وفصل الأطراف، واستخراج الأعضاء الداخلية لطقوس التقديس الشيطاني. المعلقة جثتها فوق حوض تصريف الدماء لمشروع <span class='redacted'>UNSEEN</span>.</b>",
+        footer: "ملك مقدس لأخوية UNSEEN • أي رؤية غير مصرح بها ستعاقب بقلع العيون والتضحية",
         rtl: true
       },
       de: {
-        title: "RIVERSIDE FORSCHUNGSANLAGE (BLACK SITE 04)",
-        subtitle: "CBI EXPERIMENTELLE MEDIZIN — EINDÄMMUNGSPROTOKOLL",
-        accessInfo: "DATUM: 15. OKTOBER 2021 | FREIGABE: GEHEIM (CBI DIREKTIVE)",
-        warning: "⚠️ KRITISCHER ALARM: EINDÄMMUNGSBRUCH IN SEKTOR B. TÖDLICHE GEWALT AUTORISIERT.",
-        statusLbl: "Status:",
-        locLbl: "Standort:",
-        p1Title: "SUBJEKT #0491 — CHLOE",
-        p1Status: "RUHIGGESTELLT / UNTER BEOBACHTUNG",
-        p1Loc: "SEKTOR A — ZELLE 102",
-        p1Notes: "<strong>Eindämmungsnotiz:</strong> Unter verdeckten Protokollen geborgen. Schockzustand. Murmelt ständig von 'Schatten auf der Straße'. Zugriff nur für Senior-Agenten.",
-        p2Title: "SUBJEKT #0492 — DANIEL",
-        p2Status: "EINDÄMMUNGSFEHLER // FEINDLICH",
-        p2Loc: "SEKTOR B — ISOLATIONSKAMMER 104",
-        p2Notes: "<strong>Eindämmungsnotiz:</strong> Schnelle Gewebeveränderungen.<br><br><strong>04:30 Uhr Update:</strong> Biologische Korruption bestätigt. Skelettverlängerung und Sprachverlust. Subjekt hat Stahlfesseln durchbrochen und ist im Lüftungssystem entkommen. NICHT EINZELN NÄHERN.",
-        p3Title: "SUBJEKT #0493 — JENA",
-        p3Status: "ELIMINIERT / BIO-PROBE GESICHERT",
-        p3Loc: "UNTERGESCHOSS 3 — KÜHLRAUM 08",
-        p3Notes: "<strong>Eindämmungsnotiz:</strong> Direkt in den Geheimbereich überführt. Gewebeproben für CBI-Projekt <span class='redacted'>UNSEEN</span> entnommen.",
-        footer: "GEHEIMDOKUMENT • UNBEFUGTER ZUGRIFF FÜHRT ZUR SOFORTIGEN ELIMINIERUNG",
+        title: "RIVERSIDE KULT-SANKTUARIUM & MENSCHLICHER SCHLACHTHOF",
+        subtitle: "BLUTOPFER-LOGBUCH & DÄMONISCHE MUTATIONS-REGISTRIERUNG",
+        accessInfo: "DATUM: 15. OKTOBER 2021 | FREIGABE: NUR HOHEPRIESTER UND SEKTIONSMEISTER",
+        warning: "⚠️ DÄMONISCHER DURCHBRUCH: OPFER #0492 VOR DEM FINALEN BLUTOPFER MUTIERT. OPFERKAMMERN SOFORT VERRIEGELN.",
+        statusLbl: "Ritual-Status:",
+        locLbl: "Kammer-Standort:",
+        p1Title: "OPFER #0491 — CHLOE",
+        p1Status: "KRITISCHE RITUELLE VERLETZUNG / GEBUNDEN IN ALTARRAUM 1",
+        p1Loc: "ALTARTRAKT A — ZELLE 102",
+        p1Notes: "<strong>Entführungs- & Verletzungsnotiz:</strong> <b>Nach inszeniertem Unfall entführt. Schwerste rituelle Schnittwunden, Brüche beider Beine und tief in die Brust geschnittene okkulte Symbole bei vollem Bewusstsein. Blutet stark auf dem Steinaltar.</b>",
+        p2Title: "OPFER #0492 — DANIEL",
+        p2Status: "DÄMONISCHE MUTATION VOLLENDET // FEINDLICHES WESEN",
+        p2Loc: "SEKTOR B — RITUELLE ISOLATIONSGRUBE 104",
+        p2Notes: "<strong>Entführungs- & Mutationsnotiz:</strong> <b>Skelett zertrümmert, Wirbelsäule herausgerissen und Haut bei Dämonen-Beschwörung komplett gehäutet.</b><br><br><b>04:30 Uhr Update: Dämonische Entität hat den verstümmelten Körper übernommen. Eisenketten gesprengt, zwei Priester getötet und in die Stollen geflohen. RITUAL-EINDÄMMUNG GEBROCHEN.</b>",
+        p3Title: "OPFER #0493 — JENA",
+        p3Status: "GESCHLACHTET / VOLLSTÄNDIG AUSGEBLUTET",
+        p3Loc: "UNTERGESCHOSS 3 — BLUTABFLUSSGRUBE 08",
+        p3Notes: "<strong>Entführungs- & Schlachtungsnotiz:</strong> <b>Kehle zur Bluternte vollständig durchgeschnitten, Gliedmaßen abgetrennt und Innereien für okkulte Reliquien entnommen. Kadaver hängt über dem Auffangbecken.</b>",
+        footer: "HEILIGES EIGENTUM DER UNSEEN-BRUDERSCHAFT • UNBEFUGTES ANSEHEN WIRD MIT AUGENAUSTECHEN BESTRAFT",
         rtl: false
       },
       ja: {
-        title: "リバーサイド研究施設 (ブラックサイト04)",
-        subtitle: "CBI実験医学部門 — 収容記録",
-        accessInfo: "日付: 2021年10月15日 | 機密レベル: 極秘 (CBI指令)",
-        warning: "⚠️ 緊急警報: セクターBで収容違反が発生。致死性の武力行使が許可されました。",
-        statusLbl: "ステータス:",
-        locLbl: "場所:",
-        p1Title: "検体 #0491 — クロエ",
-        p1Status: "鎮静状態 / 監視下",
-        p1Loc: "セクターA — 保持セル 102",
-        p1Notes: "<strong>収容記録:</strong> 事故現場から極秘裏に回収。大きなショック状態。「道路の影」についてつぶやき続けている。",
-        p2Title: "検体 #0492 — ダニエル",
-        p2Status: "収容失敗 // 敵対的",
-        p2Loc: "セクターB — 隔離室 104",
-        p2Notes: "<strong>収容記録:</strong> 急速な皮膚潰瘍と痙攣を発生。<br><br><strong>午前4:30更新:</strong> 生物学的変容を確認。骨格の急激な伸長と言語機能の喪失。鋼鉄の拘束を破り通気孔へ逃走。単独での捕獲を禁ず。",
-        p3Title: "検体 #0493 — ジェナ",
-        p3Status: "死亡 / バイオサンプル確保",
-        p3Loc: "地下3階 — 冷凍保管室 08",
-        p3Notes: "<strong>収容記録:</strong> 遺体は極秘保管庫へ直接移送。CBIプロジェクト<span class='redacted'>UNSEEN</span>の組織サンプルを採取済。",
-        footer: "機密文書 • 許可のないアクセスは即座に排除対象となります • CBI BLACK SITE 04",
+        title: "リバーサイド・カルト聖域 屠殺施設",
+        subtitle: "生贄生血記録および悪魔変異台帳",
+        accessInfo: "日付: 2021年10月15日 | 権限: 大司祭および解体者専用",
+        warning: "⚠️ 悪魔発生警報: 生贄#0492が最終儀式前に変異。直ちに生贄の間を封鎖せよ。",
+        statusLbl: "儀式ステータス:",
+        locLbl: "部屋の場所:",
+        p1Title: "生贄 #0491 — クロエ",
+        p1Status: "儀式による重体 / 祭壇の間1に拘束",
+        p1Loc: "祭壇セクターA — 102号室",
+        p1Notes: "<strong>拉致および傷の記録:</strong> <b>仕組まれた事故後に拉致。意識がある状態で胸部にオカルト紋様を深く刻まれ、両足骨折および動脈切断。石の祭壇上で大量出血中。</b>",
+        p2Title: "生贄 #0492 — ダニエル",
+        p2Status: "悪魔変異完了 // 敵対的異形",
+        p2Loc: "セクターB — 儀式隔離ピット 104",
+        p2Notes: "<strong>拉致および変異の記録:</strong> <b>悪魔召喚儀式により脊髄を破壊され、全皮膚を剥ぎ取られる極限の拷問を受けた。</b><br><br><b>午前4:30更新: 悪魔が肉体に宿り巨大化。鉄鎖をちぎり司祭2名を殺害して地下坑道へ逃走。儀式封印崩壊。</b>",
+        p3Title: "生贄 #0493 — ジェナ",
+        p3Status: "屠殺済 / 完全採血完了",
+        p3Loc: "地下3階 — 採血ピット 08",
+        p3Notes: "<strong>拉致および屠殺の記録:</strong> <b>喉を完全に切断して採血。四肢を切断し、臓器を儀式用に摘出。残りの肉体は blood vat の上に吊り下げられている。</b>",
+        footer: "UNSEEN教団の神聖なる所有物 • 許可なき閲覧者は両目を抉り出し生贄とする",
         rtl: false
       }
     };
@@ -396,19 +402,19 @@
       document.getElementById('p3-status-lbl').innerText = data.statusLbl;
       document.getElementById('p3-loc-lbl').innerText = data.locLbl;
 
-      // Subject 1 (Chloe)
+      // Vessel 1 (Chloe)
       document.getElementById('p1-title').innerText = data.p1Title;
       document.getElementById('p1-status-val').innerText = data.p1Status;
       document.getElementById('p1-loc-val').innerText = data.p1Loc;
       document.getElementById('p1-notes').innerHTML = data.p1Notes;
 
-      // Subject 2 (Daniel - Model 1)
+      // Vessel 2 (Daniel)
       document.getElementById('p2-title').innerText = data.p2Title;
       document.getElementById('p2-status-val').innerText = data.p2Status;
       document.getElementById('p2-loc-val').innerText = data.p2Loc;
       document.getElementById('p2-notes').innerHTML = data.p2Notes;
 
-      // Subject 3 (Jena)
+      // Vessel 3 (Jena)
       document.getElementById('p3-title').innerText = data.p3Title;
       document.getElementById('p3-status-val').innerText = data.p3Status;
       document.getElementById('p3-loc-val').innerText = data.p3Loc;
@@ -417,7 +423,7 @@
       document.getElementById('footer-text').innerText = data.footer;
     }
 
-    // Audio generator
+    // Audio generator (Low Cult Drone Tone)
     let audioCtx = null;
     let oscillator = null;
 
@@ -428,8 +434,8 @@
         const gain = audioCtx.createGain();
 
         oscillator.type = 'sawtooth';
-        oscillator.frequency.setValueAtTime(55, audioCtx.currentTime); 
-        gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
+        oscillator.frequency.setValueAtTime(40, audioCtx.currentTime); // Low abyssal rumble
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
 
         oscillator.connect(gain);
         gain.connect(audioCtx.destination);
